@@ -78,20 +78,13 @@ export class NavigationNode {
 	}
 }
 
-// todo: optimise and use enum probably
+const oppositeDirections = {
+	up: 'down',
+	down: 'up',
+	left: 'right',
+	right: 'left'
+};
+
 function opposite(direction: Direction) {
-	switch (direction) {
-		case 'up': {
-			return 'down';
-		}
-		case 'down': {
-			return 'up';
-		}
-		case 'left': {
-			return 'right';
-		}
-		case 'right': {
-			return 'left';
-		}
-	}
+	return oppositeDirections[direction];
 }
