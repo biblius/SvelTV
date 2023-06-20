@@ -1,88 +1,56 @@
-<script>
-	import { generateNavigationMap, handleNavigation } from './lib/utils/navigationHandler';
+<script lang="ts">
+	import { DummyInputAdapter } from './lib/input/adapters/dummy';
+	import type { RCInputProcessor } from './lib/input/processor';
+	import { NavigationNode, type Direction } from './lib/navigation';
 	import { onMount } from 'svelte';
 
-	function handleKeyDown(event) {
-		activeItem = handleNavigation(event, navigationGraph, activeItem);
-	}
-	document.addEventListener('keydown', handleKeyDown);
+	let current: NavigationNode;
+	let inputAdapter: RCInputProcessor;
 
-	/**
-	 * Defines the elements which can be navigated to, as well as their immediate siblings which can be navigated to
-	 */
-	let navigationElements = [
-		{
-			elementName: 'button1',
-			right: 'button2',
-			down: 'button4'
-		},
-		{
-			elementName: 'button2',
-			left: 'button1',
-			right: 'button3',
-			down: 'button5'
-		},
-		{
-			elementName: 'button3',
-			left: 'button2',
-			down: 'button6'
-		},
-		{
-			elementName: 'button4',
-			right: 'button5',
-			down: 'button7',
-			up: 'button1'
-		},
-		{
-			elementName: 'button5',
-			left: 'button4',
-			right: 'button6',
-			down: 'button8',
-			up: 'button2'
-		},
-		{
-			elementName: 'button6',
-			left: 'button5',
-			down: 'button9',
-			up: 'button3'
-		},
-		{
-			elementName: 'button7',
-			right: 'button8',
-			up: 'button4'
-		},
-		{
-			elementName: 'button8',
-			left: 'button7',
-			right: 'button9',
-			up: 'button5'
-		},
-		{
-			elementName: 'button9',
-			left: 'button8',
-			up: 'button6'
-		}
-	];
-
-	let navigationGraph = generateNavigationMap(navigationElements);
-
-	let activeItem = 'button1';
+	const first = new NavigationNode(null, null, null, null);
+	const second = new NavigationNode(null, null, first, null);
+	const third = new NavigationNode(null, null, second, null);
+	const fourth = new NavigationNode(first, null, null, null);
+	const fifth = new NavigationNode(second, null, fourth, null);
+	const sixth = new NavigationNode(third, null, fifth, null);
+	const seventh = new NavigationNode(fourth, null, null, null);
+	const eighth = new NavigationNode(fifth, null, seventh, null);
+	const nein = new NavigationNode(sixth, null, eighth, null);
 
 	onMount(() => {
-		navigationGraph.button1.element.focus();
+		current = first;
+		first.element.focus();
 	});
+
+	inputAdapter = new DummyInputAdapter();
+
+	function handleKeyDown(event: KeyboardEvent) {
+		const processed = inputAdapter.process(event);
+
+		if (!processed) {
+			return;
+		}
+
+		if (processed.type === 'directional') {
+			current = NavigationNode.navigate(processed.value as Direction, current);
+		}
+
+		current.element.focus();
+	}
+
+	document.addEventListener('keydown', handleKeyDown);
 </script>
 
 <main id="main">
-	<button bind:this="{navigationGraph.button1.element}"> One </button>
-	<button bind:this="{navigationGraph.button2.element}"> Two </button>
-	<button bind:this="{navigationGraph.button3.element}"> Three </button>
-	<button bind:this="{navigationGraph.button4.element}"> Four </button>
-	<button bind:this="{navigationGraph.button5.element}"> Five </button>
-	<button bind:this="{navigationGraph.button6.element}"> Six </button>
-	<button bind:this="{navigationGraph.button7.element}"> Seven </button>
-	<button bind:this="{navigationGraph.button8.element}"> Eight </button>
-	<button bind:this="{navigationGraph.button9.element}"> Nine </button>
+	<button bind:this="{first.element}"> One </button>
+	<button bind:this="{second.element}"> Two </button>
+	<button bind:this="{third.element}"> Three </button>
+	<button bind:this="{fourth.element}"> Four </button>
+	<button bind:this="{fifth.element}"> Five </button>
+	<button bind:this="{sixth.element}"> Six </button>
+	<button bind:this="{seventh.element}"> Seven </button>
+	<button bind:this="{eighth.element}"> Eight </button>
+	<button bind:this="{nein.element}"> Nine </button>
 </main>
 
 <style>
