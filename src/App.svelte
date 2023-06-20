@@ -1,47 +1,112 @@
-<script lang="ts">
-	import svelteLogo from './assets/svg/svelte.svg';
-	import viteLogo from '/vite.svg';
-	import Counter from './lib/Counter.svelte';
+<script>
+	import { generateNavigationMap, handleNavigation } from './lib/utils/navigationHandler';
+	import { onMount } from 'svelte';
+
+	function handleKeyDown(event) {
+		activeItem = handleNavigation(event, navigationGraph, activeItem);
+	}
+	document.addEventListener('keydown', handleKeyDown);
+
+	/**
+	 * Defines the elements which can be navigated to, as well as their immediate siblings which can be navigated to
+	 */
+	let navigationElements = [
+		{
+			element: null,
+			elementName: 'button1',
+			right: 'button2',
+			down: 'button4'
+		},
+		{
+			element: null,
+			elementName: 'button2',
+			left: 'button1',
+			right: 'button3',
+			down: 'button5'
+		},
+		{
+			element: null,
+			elementName: 'button3',
+			left: 'button2',
+			down: 'button6'
+		},
+		{
+			element: null,
+			elementName: 'button4',
+			right: 'button5',
+			down: 'button7',
+			up: 'button1'
+		},
+		{
+			element: null,
+			elementName: 'button5',
+			left: 'button4',
+			right: 'button6',
+			down: 'button8',
+			up: 'button2'
+		},
+		{
+			element: null,
+			elementName: 'button6',
+			left: 'button5',
+			down: 'button9',
+			up: 'button3'
+		},
+		{
+			element: null,
+			elementName: 'button7',
+			right: 'button8',
+			up: 'button4'
+		},
+		{
+			element: null,
+			elementName: 'button8',
+			left: 'button7',
+			right: 'button9',
+			up: 'button5'
+		},
+		{
+			element: null,
+			elementName: 'button9',
+			left: 'button8',
+			up: 'button6'
+		}
+	];
+
+	let navigationGraph = generateNavigationMap(navigationElements);
+
+	let activeItem = 'button1';
+
+	onMount(() => {
+		navigationGraph.button1.element.focus();
+	});
 </script>
 
-<main>
-	<div>
-		<a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-			<img src="{viteLogo}" class="logo" alt="Vite Logo" />
-		</a>
-		<a href="https://svelte.dev" target="_blank" rel="noreferrer">
-			<img src="{svelteLogo}" class="logo svelte" alt="Svelte Logo" />
-		</a>
-	</div>
-	<h1>Vite + Svelte</h1>
-
-	<div class="card">
-		<Counter />
-	</div>
-
-	<p>
-		Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank" rel="noreferrer"
-			>SvelteKit</a
-		>, the official Svelte app framework powered by Vite!
-	</p>
-
-	<p class="read-the-docs">Click on the Vite and Svelte logos to learn more</p>
+<main id="main">
+	<button bind:this="{navigationGraph.button1.element}"> One </button>
+	<button bind:this="{navigationGraph.button2.element}"> Two </button>
+	<button bind:this="{navigationGraph.button3.element}"> Three </button>
+	<button bind:this="{navigationGraph.button4.element}"> Four </button>
+	<button bind:this="{navigationGraph.button5.element}"> Five </button>
+	<button bind:this="{navigationGraph.button6.element}"> Six </button>
+	<button bind:this="{navigationGraph.button7.element}"> Seven </button>
+	<button bind:this="{navigationGraph.button8.element}"> Eight </button>
+	<button bind:this="{navigationGraph.button9.element}"> Nine </button>
 </main>
 
 <style>
-	.logo {
-		height: 6em;
-		padding: 1.5em;
-		will-change: filter;
-		transition: filter 300ms;
+	main {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		gap: 1rem;
 	}
-	.logo:hover {
-		filter: drop-shadow(0 0 2em #646cffaa);
+
+	main > button {
+		background-color: lightskyblue;
 	}
-	.logo.svelte:hover {
-		filter: drop-shadow(0 0 2em #ff3e00aa);
-	}
-	.read-the-docs {
-		color: #888;
+
+	main > button:focus,
+	main > button:focus-visible {
+		outline: 4px solid red;
 	}
 </style>
