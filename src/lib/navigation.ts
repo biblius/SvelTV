@@ -11,7 +11,7 @@ export class NavigationNode {
 
 	/**
 	 * This will alter any appropriate branches of the nodes passed into the constructor.
-	 * Sine a node can only branch to 4 directions, the node provided for any direction has the opposite
+	 * Since a node can only branch to 4 directions, the node provided for any direction has the opposite
 	 * direction assigned to `this`, i.e. the current node being constructed
 	 * @param up
 	 * @param down

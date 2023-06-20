@@ -1,11 +1,16 @@
 <script lang="ts">
+	import { setupAdapter } from './lib/deviceInfo';
 	import { DummyInputAdapter } from './lib/input/adapters/dummy';
 	import type { RCInputProcessor } from './lib/input/processor';
 	import { NavigationNode, type Direction } from './lib/navigation';
 	import { onMount } from 'svelte';
 
+	console.log(navigator);
+
 	let current: NavigationNode;
 	let inputAdapter: RCInputProcessor;
+
+	inputAdapter = setupAdapter();
 
 	const first = new NavigationNode(null, null, null, null);
 	const second = new NavigationNode(null, null, first, null);
