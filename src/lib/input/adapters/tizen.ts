@@ -1,39 +1,21 @@
 import type { ProcessedInput, RCInputProcessor } from '../processor';
 
+const directionMap = {
+	38: 'up',
+	40: 'down',
+	37: 'left',
+	39: 'right'
+};
+
 export class TizenInputAdapter implements RCInputProcessor {
 	process(event: KeyboardEvent): ProcessedInput {
 		switch (event.keyCode) {
-			// Up
-			case 38: {
+			case 38 || 40 || 37 || 39: {
 				return {
 					type: 'directional',
-					value: 'up'
+					value: directionMap[event.keyCode]
 				};
 			}
-			// Down
-			case 40: {
-				return {
-					type: 'directional',
-					value: 'down'
-				};
-			}
-
-			// Left
-			case 37: {
-				return {
-					type: 'directional',
-					value: 'left'
-				};
-			}
-
-			// Right
-			case 39: {
-				return {
-					type: 'directional',
-					value: 'right'
-				};
-			}
-
 			// Enter
 			case 13: {
 				return {
