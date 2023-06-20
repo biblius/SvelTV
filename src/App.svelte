@@ -12,33 +12,28 @@
 	 */
 	let navigationElements = [
 		{
-			element: null,
 			elementName: 'button1',
 			right: 'button2',
 			down: 'button4'
 		},
 		{
-			element: null,
 			elementName: 'button2',
 			left: 'button1',
 			right: 'button3',
 			down: 'button5'
 		},
 		{
-			element: null,
 			elementName: 'button3',
 			left: 'button2',
 			down: 'button6'
 		},
 		{
-			element: null,
 			elementName: 'button4',
 			right: 'button5',
 			down: 'button7',
 			up: 'button1'
 		},
 		{
-			element: null,
 			elementName: 'button5',
 			left: 'button4',
 			right: 'button6',
@@ -46,27 +41,23 @@
 			up: 'button2'
 		},
 		{
-			element: null,
 			elementName: 'button6',
 			left: 'button5',
 			down: 'button9',
 			up: 'button3'
 		},
 		{
-			element: null,
 			elementName: 'button7',
 			right: 'button8',
 			up: 'button4'
 		},
 		{
-			element: null,
 			elementName: 'button8',
 			left: 'button7',
 			right: 'button9',
 			up: 'button5'
 		},
 		{
-			element: null,
 			elementName: 'button9',
 			left: 'button8',
 			up: 'button6'

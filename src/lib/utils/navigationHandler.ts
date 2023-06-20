@@ -1,5 +1,4 @@
 type NavigationGraphArg = {
-	element: HTMLElement | null;
 	elementName: string;
 	down?: string;
 	left?: string;
@@ -11,7 +10,6 @@ type NavigationGraph = {
 	[x in string]: {
 		element: HTMLElement;
 		elementName: string;
-		getElement: Function;
 		down?: Function;
 		left?: Function;
 		right?: Function;
@@ -43,9 +41,6 @@ export function generateNavigationMap(args: NavigationGraphArg[]) {
 	args.forEach((item) => {
 		navigationGraph[item.elementName] = {
 			element: null,
-			getElement: function () {
-				return this.element;
-			},
 			elementName: item.elementName
 		};
 	});
