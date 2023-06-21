@@ -1,14 +1,26 @@
-import type { ProcessedInput, RCInputProcessor } from '../processor';
+import type { ProcessedInput, RCInputProcessor } from '../types';
 
-export const keyCodeMap = {
-	37: { type: 'directional', value: 'left' },
-	38: { type: 'directional', value: 'up' },
-	39: { type: 'directional', value: 'right' },
-	40: { type: 'directional', value: 'down' }
+const keyCodeMap = {
+	// Directional
+	ArrowLeft: { type: 'directional', value: 'left' },
+	ArrowUp: { type: 'directional', value: 'up' },
+	ArrowRight: { type: 'directional', value: 'right' },
+	ArrowDown: { type: 'directional', value: 'down' },
+
+	// Numpad
+	1: { type: 'numpad', value: 1 },
+	2: { type: 'numpad', value: 2 },
+	3: { type: 'numpad', value: 3 },
+	4: { type: 'numpad', value: 4 },
+	5: { type: 'numpad', value: 5 },
+	6: { type: 'numpad', value: 6 },
+	7: { type: 'numpad', value: 7 },
+	8: { type: 'numpad', value: 8 },
+	9: { type: 'numpad', value: 9 }
 };
 
 export class DummyInputAdapter implements RCInputProcessor {
 	process(event: KeyboardEvent): ProcessedInput {
-		return keyCodeMap[event.keyCode];
+		return keyCodeMap[event.key];
 	}
 }

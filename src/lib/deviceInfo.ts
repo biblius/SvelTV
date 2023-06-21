@@ -1,7 +1,7 @@
 import { DummyInputAdapter } from './input/adapters/dummy';
 import { TizenInputAdapter } from './input/adapters/tizen';
 import { WebosInputAdapter } from './input/adapters/webos';
-import type { RCInputProcessor } from './input/processor';
+import type { RCInputProcessor } from './input/types';
 
 export function setupAdapter(): RCInputProcessor {
 	const tizen = /tizen/i;

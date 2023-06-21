@@ -1,10 +1,11 @@
-import type { ProcessedInput, RCInputProcessor } from '../processor';
+import type { Direction } from '../../navigation';
+import type { ProcessedInput, RCInputProcessor } from '../types';
 
 const directionMap = {
-	37: 'left',
-	38: 'up',
-	39: 'right',
-	40: 'down'
+	37: 'left' as Direction,
+	38: 'up' as Direction,
+	39: 'right' as Direction,
+	40: 'down' as Direction
 };
 
 export class TizenInputAdapter implements RCInputProcessor {
@@ -19,7 +20,7 @@ export class TizenInputAdapter implements RCInputProcessor {
 			// Enter
 			case 13: {
 				return {
-					type: 'directional',
+					type: 'action',
 					value: 'enter'
 				};
 			}

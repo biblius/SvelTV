@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { setupAdapter } from './lib/deviceInfo';
-	import { DummyInputAdapter, keyCodeMap } from './lib/input/adapters/dummy';
-	import type { RCInputProcessor } from './lib/input/processor';
+	import type { RCInputProcessor } from './lib/input/types';
 	import { NavigationNode, type Direction } from './lib/navigation';
 	import { onMount } from 'svelte';
 
@@ -16,7 +15,7 @@
 	const fourth = new NavigationNode(first, null, null, null);
 	const fifth = new NavigationNode(second, null, fourth, null);
 	const sixth = new NavigationNode(third, null, fifth, null);
-	const seventh = new NavigationNode(fourth, null, null, null);
+	const seventh = new NavigationNode(fourth, first, null, null);
 	const eighth = new NavigationNode(fifth, null, seventh, null);
 	const nein = new NavigationNode(sixth, null, eighth, null);
 	const cener = new NavigationNode(null, null, null, null);
@@ -24,23 +23,30 @@
 	cener.setLeaf('up', nein);
 	cener.setLeaf('up', seventh);
 
-	onMount(async () => {
+	const buttons = [first, second, third, fourth, fifth, sixth, seventh, eighth, nein, cener];
+
+	onMount(() => {
 		current = first;
 		first.element.focus();
 	});
 
-	inputAdapter = new DummyInputAdapter();
-
 	function handleKeyDown(event: KeyboardEvent) {
-		if (Object.keys(keyCodeMap).includes(`${event?.keyCode}`)) event.preventDefault();
 		const processed = inputAdapter.process(event);
+
+		console.log(processed);
 
 		if (!processed) {
 			return;
 		}
 
+		event.preventDefault();
+
 		if (processed.type === 'directional') {
 			current = NavigationNode.navigate(processed.value as Direction, current);
+		}
+
+		if (processed.type === 'numpad' && processed.value !== 0) {
+			current = buttons[processed.value - 1];
 		}
 
 		current.element.focus();
