@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
-    "bundle-tv": "vite build && node ./scripts/bundle-tv"
+    "bundle-tv": "vite build && node ./scripts/bundle-tv",
+    "bundle-android": "vite build && node ./scripts/bundle-tv apps/android/SvelTVe/app/src/main/assets"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.4",
