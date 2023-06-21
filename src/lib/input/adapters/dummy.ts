@@ -1,6 +1,6 @@
 import type { ProcessedInput, RCInputProcessor } from '../processor';
 
-const keyCodeMap = {
+export const keyCodeMap = {
 	37: { type: 'directional', value: 'left' },
 	38: { type: 'directional', value: 'up' },
 	39: { type: 'directional', value: 'right' },
