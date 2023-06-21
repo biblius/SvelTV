@@ -23,6 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val webView = WebView(this)
         webView.settings.javaScriptEnabled = true
+        WebView.setWebContentsDebuggingEnabled(true)
         setContentView(webView)
 
         val assetLoader = WebViewAssetLoader.Builder()
