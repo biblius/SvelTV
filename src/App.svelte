@@ -1,61 +1,37 @@
 <script lang="ts">
-	import { setupAdapter } from './lib/deviceInfo';
-	import { DummyInputAdapter } from './lib/input/adapters/dummy';
-	import type { RCInputProcessor } from './lib/input/processor';
-	import { NavigationNode, type Direction } from './lib/navigation';
 	import { onMount } from 'svelte';
 
 	console.log(navigator);
 
-	let current: NavigationNode;
-	let inputAdapter: RCInputProcessor;
+	let first = null;
 
-	inputAdapter = setupAdapter();
-
-	const first = new NavigationNode(null, null, null, null);
-	const second = new NavigationNode(null, null, first, null);
-	const third = new NavigationNode(null, null, second, null);
-	const fourth = new NavigationNode(first, null, null, null);
-	const fifth = new NavigationNode(second, null, fourth, null);
-	const sixth = new NavigationNode(third, null, fifth, null);
-	const seventh = new NavigationNode(fourth, null, null, null);
-	const eighth = new NavigationNode(fifth, null, seventh, null);
-	const nein = new NavigationNode(sixth, null, eighth, null);
-
-	onMount(() => {
-		current = first;
-		first.element.focus();
+	onMount(async () => {
+		first.focus();
+		imgSrc = await fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+			.then((res) => {
+				return res.json();
+			})
+			.then((res) => {
+				return res.sprites.front_default;
+			});
 	});
 
-	inputAdapter = new DummyInputAdapter();
-
-	function handleKeyDown(event: KeyboardEvent) {
-		const processed = inputAdapter.process(event);
-
-		if (!processed) {
-			return;
-		}
-
-		if (processed.type === 'directional') {
-			current = NavigationNode.navigate(processed.value as Direction, current);
-		}
-
-		current.element.focus();
-	}
-
-	document.addEventListener('keydown', handleKeyDown);
+	let imgSrc = '';
 </script>
 
 <main id="main">
-	<button bind:this="{first.element}"> One </button>
-	<button bind:this="{second.element}"> Two </button>
-	<button bind:this="{third.element}"> Three </button>
-	<button bind:this="{fourth.element}"> Four </button>
-	<button bind:this="{fifth.element}"> Five </button>
-	<button bind:this="{sixth.element}"> Six </button>
-	<button bind:this="{seventh.element}"> Seven </button>
-	<button bind:this="{eighth.element}"> Eight </button>
-	<button bind:this="{nein.element}"> Nine </button>
+	<button tabindex="0" bind:this="{first}"> One </button>
+	<button tabindex="0"> Two </button>
+	<button tabindex="0"> Three </button>
+	<button tabindex="0"> Four </button>
+	<button tabindex="0"> Five </button>
+	<button tabindex="0"> Six </button>
+	<button tabindex="0"> Seven </button>
+	<button tabindex="0"> Eight </button>
+	<button tabindex="0"> Nine </button>
+
+	<input type="text" />
+	<img src="{imgSrc}" alt="" />
 </main>
 
 <style>
@@ -72,5 +48,9 @@
 	main > button:focus,
 	main > button:focus-visible {
 		outline: 4px solid red;
+	}
+
+	input {
+		grid-column: 1/3;
 	}
 </style>
