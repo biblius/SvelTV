@@ -11,7 +11,10 @@ const directionMap = {
 export class TizenInputAdapter implements RCInputProcessor {
 	process(event: KeyboardEvent): ProcessedInput {
 		switch (event.keyCode) {
-			case 38 || 40 || 37 || 39: {
+			case 38:
+			case 40:
+			case 37:
+			case 39: {
 				return {
 					type: 'directional',
 					value: directionMap[event.keyCode]

@@ -15,7 +15,7 @@
 	const fourth = new NavigationNode(first, null, null, null);
 	const fifth = new NavigationNode(second, null, fourth, null);
 	const sixth = new NavigationNode(third, null, fifth, null);
-	const seventh = new NavigationNode(fourth, first, null, null);
+	const seventh = new NavigationNode(fourth, null, null, null);
 	const eighth = new NavigationNode(fifth, null, seventh, null);
 	const nein = new NavigationNode(sixth, null, eighth, null);
 	const cener = new NavigationNode(null, null, null, null);
@@ -31,6 +31,8 @@
 	});
 
 	function handleKeyDown(event: KeyboardEvent) {
+		console.log(event);
+
 		const processed = inputAdapter.process(event);
 
 		console.log(processed);

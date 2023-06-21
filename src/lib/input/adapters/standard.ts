@@ -1,6 +1,6 @@
 import type { ProcessedInput, RCInputProcessor } from '../types';
 
-const keyCodeMap = {
+const inputMap = {
 	// Directional
 	ArrowLeft: { type: 'directional', value: 'left' },
 	ArrowUp: { type: 'directional', value: 'up' },
@@ -19,8 +19,8 @@ const keyCodeMap = {
 	9: { type: 'numpad', value: 9 }
 };
 
-export class DummyInputAdapter implements RCInputProcessor {
+export class StandardInputAdapter implements RCInputProcessor {
 	process(event: KeyboardEvent): ProcessedInput {
-		return keyCodeMap[event.key];
+		return inputMap[event.key];
 	}
 }
