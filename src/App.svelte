@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { element } from 'svelte/internal';
 	import { setupAdapter } from './lib/deviceInfo';
 	import type { RCInputProcessor } from './lib/input/types';
 	import { NavigationNode, type Direction } from './lib/navigation';
@@ -32,11 +33,7 @@
 	});
 
 	function handleKeyDown(event: KeyboardEvent) {
-		console.log(event);
-
 		const processed = inputAdapter.process(event);
-
-		console.log(processed);
 
 		if (!processed) {
 			return;
@@ -58,25 +55,87 @@
 		current.element.classList.add('focused');
 	}
 
+	function handleClick(domNode) {
+		console.log(element);
+		current.element.classList.remove('focused');
+		current = domNode;
+		current.element.classList.add('focused');
+		current.element.focus();
+	}
+
 	document.addEventListener('keydown', handleKeyDown);
 </script>
 
 <main id="main">
 	<section class="flex flex-column">
 		<div class="mb-2">
-			<button bind:this="{first.element}"> One </button>
-			<button bind:this="{second.element}"> Two </button>
-			<button bind:this="{third.element}"> Three </button>
+			<button
+				bind:this="{first.element}"
+				on:click="{() => {
+					handleClick(first);
+				}}">
+				One
+			</button>
+			<button
+				bind:this="{second.element}"
+				on:click="{() => {
+					handleClick(second);
+				}}">
+				Two
+			</button>
+			<button
+				bind:this="{third.element}"
+				on:click="{() => {
+					handleClick(third);
+				}}">
+				Three
+			</button>
 		</div>
 		<div class="mb-2">
-			<button bind:this="{fourth.element}"> Four </button>
-			<button bind:this="{fifth.element}"> Five </button>
-			<button bind:this="{sixth.element}"> Six </button>
+			<button
+				bind:this="{fourth.element}"
+				on:click="{() => {
+					handleClick(fourth);
+				}}">
+				Four
+			</button>
+			<button
+				bind:this="{fifth.element}"
+				on:click="{() => {
+					handleClick(fifth);
+				}}">
+				Five
+			</button>
+			<button
+				bind:this="{sixth.element}"
+				on:click="{() => {
+					handleClick(sixth);
+				}}">
+				Six
+			</button>
 		</div>
 		<div class="mb-2">
-			<button bind:this="{seventh.element}"> Seven </button>
-			<button bind:this="{eighth.element}"> Eight </button>
-			<button bind:this="{nein.element}"> Nine </button>
+			<button
+				bind:this="{seventh.element}"
+				on:click="{() => {
+					handleClick(seventh);
+				}}">
+				Seven
+			</button>
+			<button
+				bind:this="{eighth.element}"
+				on:click="{() => {
+					handleClick(eighth);
+				}}">
+				Eight
+			</button>
+			<button
+				bind:this="{nein.element}"
+				on:click="{() => {
+					handleClick(nein);
+				}}">
+				Nine
+			</button>
 		</div>
 
 		<input type="text" bind:this="{cener.element}" />
@@ -98,7 +157,7 @@
 		outline: none;
 		padding: 0.6em 1.2em;
 		transition: border-color 0.25s;
-		width: calc(33% - 2px);
+		width: 80px;
 	}
 
 	:global(button.focused) {
