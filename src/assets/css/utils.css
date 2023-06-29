@@ -1,0 +1,12 @@
+/* Layout */
+.flex {
+	display: flex;
+}
+
+.flex-column {
+	flex-direction: column;
+}
+
+.mb-2 {
+	margin-bottom: 0.5rem;
+}

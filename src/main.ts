@@ -1,4 +1,5 @@
 import './assets/css/index.css';
+import './assets/css/utils.css';
 import App from './App.svelte';
 
 const app = new App({

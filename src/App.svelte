@@ -28,6 +28,7 @@
 	onMount(() => {
 		current = first;
 		first.element.focus();
+		first.element.classList.add('focused');
 	});
 
 	function handleKeyDown(event: KeyboardEvent) {
@@ -43,6 +44,8 @@
 
 		event.preventDefault();
 
+		current.element.classList.remove('focused');
+
 		if (processed.type === 'directional') {
 			current = NavigationNode.navigate(processed.value as Direction, current);
 		}
@@ -52,72 +55,58 @@
 		}
 
 		current.element.focus();
+		current.element.classList.add('focused');
 	}
 
 	document.addEventListener('keydown', handleKeyDown);
 </script>
 
 <main id="main">
-	<h1>Demo navigation App in SvelteTV</h1>
-	<div class="col">
-		<button bind:this="{first.element}"> One </button>
-		<button bind:this="{second.element}"> Two </button>
-		<button bind:this="{third.element}"> Three </button>
-	</div>
-	<div class="col">
-		<button bind:this="{fourth.element}"> Four </button>
-		<button bind:this="{fifth.element}"> Five </button>
-		<button bind:this="{sixth.element}"> Six </button>
-	</div>
-	<div class="col">
-		<button bind:this="{seventh.element}"> Seven </button>
-		<button bind:this="{eighth.element}"> Eight </button>
-		<button bind:this="{nein.element}"> Nine </button>
-	</div>
+	<section class="flex flex-column">
+		<div class="mb-2">
+			<button bind:this="{first.element}"> One </button>
+			<button bind:this="{second.element}"> Two </button>
+			<button bind:this="{third.element}"> Three </button>
+		</div>
+		<div class="mb-2">
+			<button bind:this="{fourth.element}"> Four </button>
+			<button bind:this="{fifth.element}"> Five </button>
+			<button bind:this="{sixth.element}"> Six </button>
+		</div>
+		<div class="mb-2">
+			<button bind:this="{seventh.element}"> Seven </button>
+			<button bind:this="{eighth.element}"> Eight </button>
+			<button bind:this="{nein.element}"> Nine </button>
+		</div>
 
-	<div class="col center">
 		<input type="text" bind:this="{cener.element}" />
-	</div>
+	</section>
 </main>
 
 <style>
-	main {
-		display: flex;
-		flex-direction: column;
-	}
-
-	.col {
-		display: flex;
-		justify-content: space-between;
-		margin-bottom: 5px;
-	}
-
-	.center {
-		justify-content: center;
-	}
-
 	input {
 		width: 100%;
 	}
 
 	button {
-		outline: none;
-		width: 33%;
+		background-color: lightslategrey;
 		border-radius: 8px;
-		border: 1px solid transparent;
-		padding: 0.6em 1.2em;
+		border: 2px solid transparent;
+		color: white;
 		font-size: 1em;
 		font-weight: 500;
-		font-family: inherit;
-		background-color: rgba(26, 26, 26, 1);
-		cursor: pointer;
+		outline: none;
+		padding: 0.6em 1.2em;
 		transition: border-color 0.25s;
+		width: calc(33% - 2px);
 	}
-	button:hover {
-		border-color: rgba(100, 108, 255, 1);
+
+	:global(button.focused) {
+		border: 2px solid coral;
+		outline: none;
 	}
-	button:focus,
-	button:focus-visible {
-		border-color: rgba(100, 108, 255, 1);
+	:global(input.focused) {
+		border: 2px solid coral;
+		outline: none;
 	}
 </style>
