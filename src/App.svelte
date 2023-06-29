@@ -154,16 +154,20 @@
 		font-weight: 500;
 		outline: none;
 		padding: 0.6em 1.2em;
-		transition: border-color 0.25s;
+		transition-duration: 0.25s;
+		transition-property: border-color, background-color;
 		width: 80px;
+	}
+
+	button:hover {
+		border: 2px solid rgb(255, 150, 111);
+		background-color: rgb(141, 151, 161);
 	}
 
 	:global(button.focused) {
 		border: 2px solid coral;
-		outline: none;
 	}
 	:global(input.focused) {
 		border: 2px solid coral;
-		outline: none;
 	}
 </style>
