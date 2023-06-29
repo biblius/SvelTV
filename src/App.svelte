@@ -58,36 +58,66 @@
 </script>
 
 <main id="main">
-	<button bind:this="{first.element}"> One </button>
-	<button bind:this="{second.element}"> Two </button>
-	<button bind:this="{third.element}"> Three </button>
-	<button bind:this="{fourth.element}"> Four </button>
-	<button bind:this="{fifth.element}"> Five </button>
-	<button bind:this="{sixth.element}"> Six </button>
-	<button bind:this="{seventh.element}"> Seven </button>
-	<button bind:this="{eighth.element}"> Eight </button>
-	<button bind:this="{nein.element}"> Nine </button>
+	<h1>Demo navigation App in SvelteTV</h1>
+	<div class="col">
+		<button bind:this="{first.element}"> One </button>
+		<button bind:this="{second.element}"> Two </button>
+		<button bind:this="{third.element}"> Three </button>
+	</div>
+	<div class="col">
+		<button bind:this="{fourth.element}"> Four </button>
+		<button bind:this="{fifth.element}"> Five </button>
+		<button bind:this="{sixth.element}"> Six </button>
+	</div>
+	<div class="col">
+		<button bind:this="{seventh.element}"> Seven </button>
+		<button bind:this="{eighth.element}"> Eight </button>
+		<button bind:this="{nein.element}"> Nine </button>
+	</div>
 
-	<input type="text" bind:this="{cener.element}" />
+	<div class="col center">
+		<input type="text" bind:this="{cener.element}" />
+	</div>
 </main>
 
 <style>
 	main {
-		display: grid;
-		grid-template-columns: 1fr 1fr 1fr;
-		gap: 1rem;
+		display: flex;
+		flex-direction: column;
 	}
 
-	main > button {
-		background-color: lightskyblue;
+	.col {
+		display: flex;
+		justify-content: space-between;
+		margin-bottom: 5px;
 	}
 
-	main > button:focus,
-	main > button:focus-visible {
-		outline: 4px solid red;
+	.center {
+		justify-content: center;
 	}
 
 	input {
-		grid-column: 1/3;
+		width: 100%;
+	}
+
+	button {
+		outline: none;
+		width: 33%;
+		border-radius: 8px;
+		border: 1px solid transparent;
+		padding: 0.6em 1.2em;
+		font-size: 1em;
+		font-weight: 500;
+		font-family: inherit;
+		background-color: rgba(26, 26, 26, 1);
+		cursor: pointer;
+		transition: border-color 0.25s;
+	}
+	button:hover {
+		border-color: rgba(100, 108, 255, 1);
+	}
+	button:focus,
+	button:focus-visible {
+		border-color: rgba(100, 108, 255, 1);
 	}
 </style>
