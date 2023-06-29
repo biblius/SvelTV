@@ -148,6 +148,7 @@
 <style>
 	input {
 		width: 100%;
+		outline: none;
 	}
 
 	button {
