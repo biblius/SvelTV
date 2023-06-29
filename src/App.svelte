@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { element } from 'svelte/internal';
 	import { setupAdapter } from './lib/deviceInfo';
 	import type { RCInputProcessor } from './lib/input/types';
 	import { NavigationNode, type Direction } from './lib/navigation';
@@ -56,7 +55,6 @@
 	}
 
 	function handleClick(domNode) {
-		console.log(element);
 		current.element.classList.remove('focused');
 		current = domNode;
 		current.element.classList.add('focused');
