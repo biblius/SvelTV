@@ -136,7 +136,12 @@
 			</button>
 		</div>
 
-		<input type="text" bind:this="{cener.element}" />
+		<input
+			type="text"
+			bind:this="{cener.element}"
+			on:click="{() => {
+				handleClick(cener);
+			}}" />
 	</section>
 </main>
 
