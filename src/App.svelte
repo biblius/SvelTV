@@ -32,6 +32,7 @@
 	});
 
 	function handleKeyDown(event: KeyboardEvent) {
+		console.log('test');
 		const processed = inputAdapter.process(event);
 
 		if (!processed) {
@@ -54,7 +55,7 @@
 		current.element.classList.add('focused');
 	}
 
-	function handleClick(domNode) {
+	function handleFocus(domNode) {
 		current.element.classList.remove('focused');
 		current = domNode;
 		current.element.classList.add('focused');
@@ -69,22 +70,22 @@
 		<div class="mb-2">
 			<button
 				bind:this="{first.element}"
-				on:click="{() => {
-					handleClick(first);
+				on:focus="{() => {
+					handleFocus(first);
 				}}">
 				One
 			</button>
 			<button
 				bind:this="{second.element}"
-				on:click="{() => {
-					handleClick(second);
+				on:focus="{() => {
+					handleFocus(second);
 				}}">
 				Two
 			</button>
 			<button
 				bind:this="{third.element}"
-				on:click="{() => {
-					handleClick(third);
+				on:focus="{() => {
+					handleFocus(third);
 				}}">
 				Three
 			</button>
@@ -92,22 +93,22 @@
 		<div class="mb-2">
 			<button
 				bind:this="{fourth.element}"
-				on:click="{() => {
-					handleClick(fourth);
+				on:focus="{() => {
+					handleFocus(fourth);
 				}}">
 				Four
 			</button>
 			<button
 				bind:this="{fifth.element}"
-				on:click="{() => {
-					handleClick(fifth);
+				on:focus="{() => {
+					handleFocus(fifth);
 				}}">
 				Five
 			</button>
 			<button
 				bind:this="{sixth.element}"
-				on:click="{() => {
-					handleClick(sixth);
+				on:focus="{() => {
+					handleFocus(sixth);
 				}}">
 				Six
 			</button>
@@ -115,22 +116,22 @@
 		<div class="mb-2">
 			<button
 				bind:this="{seventh.element}"
-				on:click="{() => {
-					handleClick(seventh);
+				on:focus="{() => {
+					handleFocus(seventh);
 				}}">
 				Seven
 			</button>
 			<button
 				bind:this="{eighth.element}"
-				on:click="{() => {
-					handleClick(eighth);
+				on:focus="{() => {
+					handleFocus(eighth);
 				}}">
 				Eight
 			</button>
 			<button
 				bind:this="{nein.element}"
-				on:click="{() => {
-					handleClick(nein);
+				on:focus="{() => {
+					handleFocus(nein);
 				}}">
 				Nine
 			</button>
@@ -139,8 +140,8 @@
 		<input
 			type="text"
 			bind:this="{cener.element}"
-			on:click="{() => {
-				handleClick(cener);
+			on:focus="{() => {
+				handleFocus(cener);
 			}}" />
 	</section>
 </main>
