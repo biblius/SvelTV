@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Button from './components/Button.svelte';
+	import Button from './lib/components/Button.svelte';
 	import { setupAdapter } from './lib/deviceInfo';
 	import type { RCInputProcessor } from './lib/input/types';
-	import { NavigationNode, type Direction } from './lib/navigation';
+	import { NavigationNode, changeFocus, handleNavigate } from './lib/navigation';
 	import { onMount } from 'svelte';
 
 	let current: NavigationNode;
@@ -24,8 +24,6 @@
 	cener.setLeaf('up', nein);
 	cener.setLeaf('up', seventh);
 
-	const buttons = [first, second, third, fourth, fifth, sixth, seventh, eighth, nein, cener];
-
 	onMount(() => {
 		current = first;
 		first.element.focus();
@@ -33,34 +31,11 @@
 	});
 
 	function handleKeyDown(event: KeyboardEvent) {
-		console.log('test');
-		const processed = inputAdapter.process(event);
-
-		if (!processed) {
-			return;
-		}
-
-		event.preventDefault();
-
-		current.element.classList.remove('focused');
-
-		if (processed.type === 'directional') {
-			current = NavigationNode.navigate(processed.value as Direction, current);
-		}
-
-		if (processed.type === 'numpad' && processed.value !== 0) {
-			current = buttons[processed.value - 1];
-		}
-
-		current.element.focus();
-		current.element.classList.add('focused');
+		current = handleNavigate(current, event, inputAdapter);
 	}
 
-	function handleFocus(domNode) {
-		current.element.classList.remove('focused');
-		current = domNode;
-		current.element.classList.add('focused');
-		current.element.focus();
+	function handleFocus(domNode: NavigationNode) {
+		current = changeFocus(current, domNode);
 	}
 
 	document.addEventListener('keydown', handleKeyDown);

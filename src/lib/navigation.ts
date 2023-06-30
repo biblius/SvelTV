@@ -1,3 +1,5 @@
+import type { RCInputProcessor } from './input/types';
+
 export type Direction = 'up' | 'down' | 'left' | 'right';
 
 export class NavigationNode {
@@ -87,4 +89,37 @@ const oppositeDirections = {
 
 function opposite(direction: Direction) {
 	return oppositeDirections[direction];
+}
+
+export function changeFocus(current: NavigationNode, focused: NavigationNode) {
+	current.element.classList.remove('focused');
+	current = focused;
+	current.element.classList.add('focused');
+	current.element.focus();
+	return current;
+}
+
+export function handleNavigate(
+	current: NavigationNode,
+	event: KeyboardEvent,
+	inputAdapter: RCInputProcessor
+) {
+	const processed = inputAdapter.process(event);
+
+	if (!processed) {
+		return;
+	}
+
+	event.preventDefault();
+
+	current.element.classList.remove('focused');
+
+	if (processed.type === 'directional') {
+		current = NavigationNode.navigate(processed.value as Direction, current);
+	}
+
+	current.element.focus();
+	current.element.classList.add('focused');
+
+	return current;
 }
