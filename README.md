@@ -162,7 +162,7 @@ For TV apps, we require the following:
 
 Open your Tizen Studio and import tizen application which u previously bundled with `npm run bundle-tizen`,
 
-it should be located `~/Svelte-TV/apps/tizen/SvelTVe` then build the application inside the Tizen Studio.
+it should be located `~/Svelte-TV/apps/tizen` then build the application inside the Tizen Studio.
 
 After you builded tizen application run it in whatever mode you want, preferably tizen simulator(TV) since it should work on all CPU architectures.
 
