@@ -72,7 +72,9 @@ Developer notes:
 
 ## Setting up the Tizen Environment
 
-### 1. Install .NET
+### **LINUX**
+
+#### 1. Install .NET
 
 On (Ubuntu 22) Linux, this can be done by running the following command:
 
@@ -84,7 +86,7 @@ This should also pull all the other required packages. If it did not, run the fo
 
 (Note that package versions might change over time, always consult the [official documentation](https://learn.microsoft.com/en-us/dotnet/core/install/linux).)
 
-### 2. Install JDK
+#### 2. Install JDK
 
 Install dependencies on (Ubuntu) Linux:
 
@@ -97,7 +99,7 @@ Then you can install the JDK with the following command:
 Or download the installer: https://www.oracle.com/java/technologies/downloads/
 and run it with `sudo dpkg -i jdk-20_linux-x64_bin.deb`
 
-### 3. Install Tizen Studio
+#### 3. Install Tizen Studio
 
 Install dependencies on (Ubuntu) Linux:
 
@@ -115,3 +117,50 @@ Make sure to launch the Tizen package manager. Click install on
 - Tizen SDK tools
 - 7.0/6.5./6.0/5.5/5.0 Mobile and Wearable (Depending on the minimum platform target)
 - Extras (In Extension SDK)
+
+### **MAC**
+
+Install Tizen studio via the CLI Installer by following [these instructions](https://docs.tizen.org/application/tizen-studio/setup/install-sdk/).
+
+Here you will also find the various commands for its package manager.
+
+\* If you are having trouble with the package manager finding a Java installation on your device, make sure you have the JDK (8+) installed and
+ the JAVA_HOME env variable pointing to the proper installation directory. If it's still giving you trouble, delete '~/.package-manager' and it should work.
+
+ Installing just the CLI will allow us to specify the exact packages we want to install via its package manager.
+
+ `cd` into '~/tizen-studio' and run
+
+ `./package-manager/package-manager-cli.bin show-pkgs`
+
+ to list all packages available. For TV apps, we require the following:
+
+| Status | Name | Version | Description |
+|--------|------|---------|-------------|
+i  |  MOBILE-7.0-WebAppDevelopment-CLI     | 0.0.13  | Web app. development (CLI)
+i  |  WEARABLE-7.0-WebAppDevelopment-CLI   | 0.0.13  | Web app. development (CLI)
+i  |  MOBILE-6.5-WebAppDevelopment-CLI     | 0.0.9   | Web app. development (CLI)
+i  |  WEARABLE-6.5-WebAppDevelopment-CLI   | 0.0.9   | Web app. development (CLI)
+i  |  MOBILE-5.0-WebAppDevelopment-CLI     | 0.2.3   | Web app. development (CLI)
+i  |  WEARABLE-5.0-WebAppDevelopment-CLI   | 0.2.3   | Web app. development (CLI)
+i  |  MOBILE-4.0-WebAppDevelopment-CLI     | 0.2.2   | Web app. development (CLI)
+i  |  WEARABLE-4.0-WebAppDevelopment-CLI   | 0.2.2   | Web app. development (CLI)
+i  |  MOBILE-3.0-WebAppDevelopment-CLI     | 0.2.0   | Web app. development (CLI)
+i  |  WEARABLE-3.0-WebAppDevelopment-CLI   | 0.2.0   | Web app. development (CLI)
+i  |  MOBILE-2.4-WebAppDevelopment-CLI     | 2.6.0   | Web app. development (CLI)
+i  |  WEARABLE-2.3.2-WebAppDevelopment-CLI | 0.2.0   | Web app. development (CLI)
+i  |  MOBILE-2.3.1-WebAppDevelopment-CLI   | 2.5.0   | Web app. development (CLI)
+i  |  WEARABLE-2.3.1-WebAppDevelopment-CLI | 2.5.0   | Web app. development (CLI)
+i  |  MOBILE-2.3-WebAppDevelopment-CLI     | 2.6.0   | Web app. development (CLI)
+i  |  WEARABLE-2.3-WebAppDevelopment-CLI   | 2.6.0   | Web app. development (CLI)
+i  |  Certificate-Manager                  | 2.8.7   | Certificate Manager
+i  |  Emulator                             | 2.8.7   | Emulator manager
+i  |  WebCLI                               | 2.8.7   | Web CLI
+i  |  WebIDE                               | 2.8.7   | Web IDE
+i  |  TV-SAMSUNG-Public                    | 7.0.0   | TV Extensions-7.0
+i  |  TV-SAMSUNG-Public-Emulator           | 7.0.0   | Emulator
+i  |  TV-SAMSUNG-Public-WebAppDevelopment  | 7.0.0   | Web app. development
+i  |  TV-SAMSUNG-Extension-Tools           | 7.0.0   | TV Extensions Tools
+i  |  TV-SAMSUNG-Extension-Resources       | 7.0.0   | Web app. tools
+
+TRAINING https://developer.tizen.org/development/training/web-application%
