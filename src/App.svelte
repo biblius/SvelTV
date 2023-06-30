@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from './components/Button.svelte';
 	import { setupAdapter } from './lib/deviceInfo';
 	import type { RCInputProcessor } from './lib/input/types';
 	import { NavigationNode, type Direction } from './lib/navigation';
@@ -68,73 +69,73 @@
 <main id="main">
 	<section class="flex flex-column">
 		<div class="mb-2">
-			<button
-				bind:this="{first.element}"
+			<Button
+				bind:node="{first.element}"
 				on:focus="{() => {
 					handleFocus(first);
 				}}">
 				One
-			</button>
-			<button
-				bind:this="{second.element}"
+			</Button>
+			<Button
+				bind:node="{second.element}"
 				on:focus="{() => {
 					handleFocus(second);
 				}}">
 				Two
-			</button>
-			<button
-				bind:this="{third.element}"
+			</Button>
+			<Button
+				bind:node="{third.element}"
 				on:focus="{() => {
 					handleFocus(third);
 				}}">
 				Three
-			</button>
+			</Button>
 		</div>
 		<div class="mb-2">
-			<button
-				bind:this="{fourth.element}"
+			<Button
+				bind:node="{fourth.element}"
 				on:focus="{() => {
 					handleFocus(fourth);
 				}}">
 				Four
-			</button>
-			<button
-				bind:this="{fifth.element}"
+			</Button>
+			<Button
+				bind:node="{fifth.element}"
 				on:focus="{() => {
 					handleFocus(fifth);
 				}}">
 				Five
-			</button>
-			<button
-				bind:this="{sixth.element}"
+			</Button>
+			<Button
+				bind:node="{sixth.element}"
 				on:focus="{() => {
 					handleFocus(sixth);
 				}}">
 				Six
-			</button>
+			</Button>
 		</div>
 		<div class="mb-2">
-			<button
-				bind:this="{seventh.element}"
+			<Button
+				bind:node="{seventh.element}"
 				on:focus="{() => {
 					handleFocus(seventh);
 				}}">
 				Seven
-			</button>
-			<button
-				bind:this="{eighth.element}"
+			</Button>
+			<Button
+				bind:node="{eighth.element}"
 				on:focus="{() => {
 					handleFocus(eighth);
 				}}">
 				Eight
-			</button>
-			<button
-				bind:this="{nein.element}"
+			</Button>
+			<Button
+				bind:node="{nein.element}"
 				on:focus="{() => {
 					handleFocus(nein);
 				}}">
 				Nine
-			</button>
+			</Button>
 		</div>
 
 		<input
@@ -150,31 +151,5 @@
 	input {
 		width: 100%;
 		outline: none;
-	}
-
-	button {
-		background-color: lightslategrey;
-		border-radius: 8px;
-		border: 2px solid transparent;
-		color: white;
-		font-size: 1em;
-		font-weight: 500;
-		outline: none;
-		padding: 0.6em 1.2em;
-		transition-duration: 0.25s;
-		transition-property: border-color, background-color;
-		width: 80px;
-	}
-
-	button:hover {
-		border: 2px solid rgb(255, 150, 111);
-		background-color: rgb(141, 151, 161);
-	}
-
-	:global(button.focused) {
-		border: 2px solid coral;
-	}
-	:global(input.focused) {
-		border: 2px solid coral;
 	}
 </style>
