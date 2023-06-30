@@ -28,6 +28,7 @@ To run the application in development mode within your browser, run `npm run dev
 Developer notes:
 
 - Due to most TVs using near-obsolete browsers, we've set our minimum development target to Chrome 38. JavaScript will be polyfilled according to the `targets` option in `vite.config.ts`. As for CSS, we have to be careful not to use unsupported features. A good resource to check css/js feature sets is [Can I Use](https://caniuse.com/).
+- Currently, `npm run build` will generate both modern and legacy JavaScript. When packaging the application for WebOS you might get an error when minifying the modern js code. The file must be manually deleted and the reference to it should be removed from `index.html`.
 
 ## Setting up the Android Environment
 
@@ -74,7 +75,7 @@ Open the Android Studio and create an Android Application with an Empty Activity
 
 You can also open the project in the `./apps/android/SvelTVe/` directory and use it as a starting point.
 
-To bundle the Svelte code into your Android application, you first need to build the Svelte project with `npm run build`, then copy everything from the `dist` directory into the `app/src/main/assets/` directory of your application. You can do this with the `npm run bundle-tv` command within this project, or (if using the provided `SvelTVe` application) you can run `npm run bundle-android`. Then, you need to build your Android application which can be done within Android Studio.
+To bundle the Svelte code into your Android application, you first need to build the Svelte project with `npm run build`, then copy the contents of the `dist` directory into the `app/src/main/assets/` directory of your application. You can do this with the `npm run bundle-tv` command within this project, or (if using the provided `SvelTVe` application) you can run `npm run bundle-android`. Then, you need to build your Android application which can be done within Android Studio.
 
 ## Setting up the Tizen Environment
 
@@ -195,3 +196,9 @@ fi
 
 3. open a new terminal and run `ares -V` to check if it's correctly installed (you might have to run `source ~/.zshrc` or `source ~/.bashrc`)
 4. Download the Simulator archive and extract it within a `Simulator` directory next to the CLI directory (for example, `/home/USERNAME/.local/opt/webOS_TV_SDK/Simulator/webOS_TV_23_Simulator_1.3.0/`)
+
+### 2. Create a WebOS Application
+
+You can create a new WebOS application by executing the `ares-generate` command. For example, the provided `SvelTVe` application was created by executing `ares-generate -t basic ./apps/webos`.
+
+After creating the application, you can simply build the Svelte with `npm run build`, then copy the contents of the `dist` directory into the root directory of your project. You can do this with the `npm run bundle-tv` command within this project, or (if using the provided `SvelTVe` application) you can run `npm run bundle-webos`. Then, you need to package your application with `ares-package`, for example `ares-package ./apps/webos`.

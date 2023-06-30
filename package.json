@@ -11,7 +11,7 @@
     "bundle-tv": "vite build && node ./scripts/bundle-tv",
     "bundle-android": "vite build && node ./scripts/bundle-tv apps/android/app/src/main/assets",
     "bundle-tizen": "vite build && node ./scripts/bundle-tv apps/tizen",
-    "bundle-webos": "vite build && node ./scripts/bundle-tv apps/webOS"
+    "bundle-webos": "vite build && node ./scripts/bundle-tv apps/webos"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.0.4",
