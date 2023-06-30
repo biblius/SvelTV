@@ -156,3 +156,15 @@ For TV apps, we require the following:
 | i      | TV-SAMSUNG-Extension-Resources       | 7.0.0   | Web app. tools             |
 
 > If you are having trouble with the package manager finding a Java installation on your device, make sure you have the JDK (8+) installed and the JAVA_HOME env variable pointing to the proper installation directory. If it's still giving you trouble, delete '~/.package-manager' and it should work.
+
+### 4. Run your tizen application on tizen platform (simulator or emulator)
+
+Open your Tizen Studio and import tizen application which u previously bundled with `npm run bundle-tizen`,
+
+it should be located `~/Svelte-TV/apps/tizen/SvelTVe` then build the application inside the Tizen Studio.
+
+After you builded tizen application run it in whatever mode you want, preferably tizen simulator(TV) since it should work on all CPU architectures.
+
+If you want to use emulator u must check that your CPU support hardware-assisted virtualization, check it [here](https://developer.samsung.com/smarttv/develop/tools/prerequisites.html)
+
+To run your application on real device (Samsung Smart TV) follow [these instructions](https://developer.samsung.com/smarttv/develop/getting-started/using-sdk/tv-device.html)
