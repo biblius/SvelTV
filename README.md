@@ -168,3 +168,30 @@ After you builded tizen application run it in whatever mode you want, preferably
 If you want to use emulator u must check that your CPU support hardware-assisted virtualization, check it [here](https://developer.samsung.com/smarttv/develop/tools/prerequisites.html)
 
 To run your application on real device (Samsung Smart TV) follow [these instructions](https://developer.samsung.com/smarttv/develop/getting-started/using-sdk/tv-device.html)
+
+## Setting up WebOS environment
+
+### 1. Installing the CLI and Simulator
+
+CLI install instructions: https://webostv.developer.lge.com/develop/tools/cli-installation
+Simulator install instructions: https://webostv.developer.lge.com/develop/tools/simulator-installation
+
+In short, you have to do the following:
+
+1. download the CLI archive and extract it somewhere (for example `/home/USERNAME/.local/opt/webOS_TV_SDK/CLI/`)
+2. add the following into your `.zshrc` or `.bashrc` file:
+
+```bash
+# Setting the LG_WEBOS_TV_SDK_HOME variable to the parent directory of CLI
+export LG_WEBOS_TV_SDK_HOME="/home/USERNAME/.local/opt/webOS_TV_SDK/"
+
+if [ -d "$LG_WEBOS_TV_SDK_HOME/CLI/bin" ]; then
+  # Setting the WEBOS_CLI_TV variable to the bin directory of CLI
+  export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
+  # Adding the bin directory of CLI to the PATH variable
+  export PATH="$PATH:$WEBOS_CLI_TV"
+fi
+```
+
+3. open a new terminal and run `ares -V` to check if it's correctly installed (you might have to run `source ~/.zshrc` or `source ~/.bashrc`)
+4. Download the Simulator archive and extract it within a `Simulator` directory next to the CLI directory (for example, `/home/USERNAME/.local/opt/webOS_TV_SDK/Simulator/webOS_TV_23_Simulator_1.3.0/`)
