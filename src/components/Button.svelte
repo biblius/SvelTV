@@ -1,8 +1,15 @@
 <script lang="ts">
 	export let node;
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
+	function handleFocus() {
+		dispatch('focus');
+	}
 </script>
 
-<button bind:this="{node}">
+<button bind:this="{node}" on:focus="{handleFocus}">
 	<slot />
 </button>
 
