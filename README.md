@@ -19,6 +19,12 @@ This is an example cross-platform TV application written in Svelte. Currently, t
 - mathiasfrohlich.Kotlin (For Android)
 - ms-dotnettools.csharp (For Tizen)
 
+## Quickstart
+
+```rust
+npm i && npm run build-tv
+```
+
 ## Building the app
 
 To build the Svelte application, run `npm run build`.
@@ -38,7 +44,7 @@ For Android TV (and FireOS, GoogleTV, Android Mobile/Tablet) development, the pr
 
 We need to install Android Studio as it contains all of the necessary dependencies needed for building Android apps.
 
-Go to https://developer.android.com/studio/ and install Android Studio for your OS.
+Go to <https://developer.android.com/studio/> and install Android Studio for your OS.
 Once Android Studio is installed, within the Android Studio install SDK API levels 22, 25, 28, 30. These are used by FireOS and you'll need some or all of these depending on your targeted minimum OS version. If you're not targeting FireOS, choose whichever API level provides over 90% device coverage.
 
 ### 2. Install adb
@@ -50,7 +56,7 @@ On (Ubuntu) Linux, this can be done by running the command `sudo apt install adb
 
 On MacOS you can install it via `brew install android-platform-tools`
 
-Alternatively, use the following link https://developer.android.com/tools/releases/platform-tools to manually install `adb` on any platform.
+Alternatively, use the following link <https://developer.android.com/tools/releases/platform-tools> to manually install `adb` on any platform.
 
 ### 3. Enable Virtualization on your OS
 
@@ -103,7 +109,7 @@ Then you can install the JDK with the following command:
 
 `sudo apt install jdk-20`
 
-Download the installer for your OS: https://www.oracle.com/java/technologies/downloads/
+Download the installer for your OS: <https://www.oracle.com/java/technologies/downloads/>
 
 ### 3. Install Tizen Studio
 
@@ -111,7 +117,7 @@ Install dependencies on (Ubuntu) Linux:
 
 `sudo apt install rpm2cpio ruby libncurses5 gettext expect python2.7 libpython2.7 libsdl1.2debian`
 
-Download and execute the installer for your OS from here: https://developer.tizen.org/development/tizen-studio/download
+Download and execute the installer for your OS from here: <https://developer.tizen.org/development/tizen-studio/download>
 
 On Linux, you have to mark the .bin file as executable and run it. (The installer will ask you for the sudo password ~10 times because it's coded by monkeys.)
 
@@ -172,29 +178,31 @@ To run your application on real device (Samsung Smart TV) follow [these instruct
 
 ## Setting up WebOS environment
 
-### 1. Installing the CLI and Simulator
+### 1. Install the CLI and Simulator
 
-CLI install instructions: https://webostv.developer.lge.com/develop/tools/cli-installation
-Simulator install instructions: https://webostv.developer.lge.com/develop/tools/simulator-installation
+CLI install instructions: <https://webostv.developer.lge.com/develop/tools/cli-installation>
+Simulator install instructions: <https://webostv.developer.lge.com/develop/tools/simulator-installation>
 
 In short, you have to do the following:
 
 1. download the CLI archive and extract it somewhere (for example `/home/USERNAME/.local/opt/webOS_TV_SDK/CLI/`)
+
 2. add the following into your `.zshrc` or `.bashrc` file:
 
-```bash
-# Setting the LG_WEBOS_TV_SDK_HOME variable to the parent directory of CLI
-export LG_WEBOS_TV_SDK_HOME="/home/USERNAME/.local/opt/webOS_TV_SDK/"
+  ```bash
+  # Setting the LG_WEBOS_TV_SDK_HOME variable to the parent directory of CLI
+  export LG_WEBOS_TV_SDK_HOME="/home/USERNAME/.local/opt/webOS_TV_SDK/"
 
-if [ -d "$LG_WEBOS_TV_SDK_HOME/CLI/bin" ]; then
-  # Setting the WEBOS_CLI_TV variable to the bin directory of CLI
-  export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
-  # Adding the bin directory of CLI to the PATH variable
-  export PATH="$PATH:$WEBOS_CLI_TV"
-fi
-```
+  if [ -d "$LG_WEBOS_TV_SDK_HOME/CLI/bin" ]; then
+    # Setting the WEBOS_CLI_TV variable to the bin directory of CLI
+    export WEBOS_CLI_TV="$LG_WEBOS_TV_SDK_HOME/CLI/bin"
+    # Adding the bin directory of CLI to the PATH variable
+    export PATH="$PATH:$WEBOS_CLI_TV"
+  fi
+  ```
 
-3. open a new terminal and run `ares -V` to check if it's correctly installed (you might have to run `source ~/.zshrc` or `source ~/.bashrc`)
+3. Open a new terminal and run `ares -V` to check if it's correctly installed (you might have to run `source ~/.zshrc` or `source ~/.bashrc`)
+
 4. Download the Simulator archive and extract it within a `Simulator` directory next to the CLI directory (for example, `/home/USERNAME/.local/opt/webOS_TV_SDK/Simulator/webOS_TV_23_Simulator_1.3.0/`)
 
 ### 2. Create a WebOS Application
